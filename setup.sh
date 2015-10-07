@@ -1,6 +1,7 @@
 #!/bin/bash
 # Setup RoundedSecurity VPN Server
 # Writen by Johnny
+# Automatic Provisioning for OpenVPN
 
 #
 # Setup paramaters
