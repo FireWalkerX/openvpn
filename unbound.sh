@@ -11,6 +11,7 @@ yum install -y bind-utils  > /dev/null 2>&1
 
 # Grab Configuration File
 echo "Retrieving configuration file..."
+> /etc/unbound/unbound.conf
 curl https://raw.githubusercontent.com/jonathanwalker/openvpn/master/files/unbound.conf > /etc/unbound/unbound.conf
 unbound-control-setup
 chown unbound:root /etc/unbound/unbound_*
