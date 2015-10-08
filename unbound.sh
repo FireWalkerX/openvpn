@@ -21,3 +21,4 @@ unbound-anchor -r /etc/unbound/named.cache  > /dev/null 2>&1
 
 echo "Restarting unbound service..."
 systemctl restart unbound.service  > /dev/null 2>&1
+sudo systemctl enable unbound.service  > /dev/null 2>&1
