@@ -9,7 +9,7 @@ yum install -y unbound > /dev/null 2>&1
 # Grab Configuration File
 echo "Retrieving configuration file..."
 > /etc/unbound/unbound.conf
-curl https://raw.githubusercontent.com/jonathanwalker/openvpn/master/files/unbound.conf > /etc/unbound/unbound.conf
+curl --silent https://raw.githubusercontent.com/jonathanwalker/openvpn/master/files/unbound.conf > /etc/unbound/unbound.conf
 unbound-control-setup  > /dev/null 2>&1
 chown unbound:root /etc/unbound/unbound_*
 chmod 440 /etc/unbound/unbound_*
