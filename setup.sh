@@ -127,8 +127,8 @@ echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 systemctl restart network.service  > /dev/null 2>&1
 
 # Manage service
-systemctl -f enable openvpn@server.service
-systemctl start openvpn@server.service
+systemctl -f enable openvpn@server.service > /dev/null 2>&1
+systemctl start openvpn@server.service > /dev/null 2>&1
 
 # Copy Client Certificates
 cp /etc/openvpn/easy-rsa/keys/ca.crt /home/$superUser
