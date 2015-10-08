@@ -133,9 +133,9 @@ systemctl -f enable openvpn@server.service > /dev/null 2>&1
 systemctl start openvpn@server.service > /dev/null 2>&1
 
 # Copy Client Certificates
-cp /etc/openvpn/easy-rsa/keys/ca.crt /home/$superUser
-cp /etc/openvpn/easy-rsa/keys/$clientDevice.crt /home/$superUser
-cp /etc/openvpn/easy-rsa/keys/$clientDevice.key /home/$superUser
+# cp /etc/openvpn/easy-rsa/keys/ca.crt /home/$superUser
+# cp /etc/openvpn/easy-rsa/keys/$clientDevice.crt /home/$superUser
+# cp /etc/openvpn/easy-rsa/keys/$clientDevice.key /home/$superUser
 
 #Create Client Certificates
 echo "client" > /home/$superUser/$clientDevice.ovpn
