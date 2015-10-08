@@ -7,39 +7,27 @@
 # Setup paramaters
 #
 echo "These values are required for setup:"
-echo "Desired username: "
+echo -ne "Desired username: "
 read superUser
-echo "OpenVPN Port(ex. 443): "
+echo -ne "OpenVPN Port(ex. 443): "
 read port
 echo "TLS/SSL Certificate Values"
-echo "Country: "
+echo -ne "Country: "
 read country
-echo "Province/State: "
+echo -ne "Province/State: "
 read province
-echo "City: "
+echo -ne "City: "
 read city
-echo "Organization: "
+echo -ne "Organization: "
 read organization
-echo "Email: "
+echo -ne "Email: "
 read email
-echo "Organization Unit: "
+echo -ne "Organization Unit: "
 read organizationUnit
-echo "Common Name(ex. vpn.roundedsecurity.com): "
+echo -ne "Common Name(ex. vpn.roundedsecurity.com): "
 read commonName
-echo "Client Device Name: "
+echo -ne "Client Device Name: "
 read clientDevice
-
-# Setup variables(Modify Accordingly)
-# superUser="johnny"
-# port="443"
-# country="US"
-# province="VA"
-# city="Chesapeake"
-# organization="RoundedSec"
-# email="johnny@roundedsecurity.com"
-# organizationUnit="RoundedSecurity"
-# commonName="prod.roundedsecurity.com"
-# clientDevice="client"
 
 # Gets IP Automatically
 ip=$(curl --silent https://duckduckgo.com/?q=what+is+my+ip | awk -F'Your IP address is ' '{print $2}' | awk '{print $1}')
@@ -63,7 +51,7 @@ yum -y install yum-utils > /dev/null 2>&1
 
 # Setup User
 adduser $superUser
-echo "Specify Password for $superUser"
+echo "Specify Password for $superUser: "
 passwd $superUser
 gpasswd -a $superUser wheel
 
@@ -116,15 +104,15 @@ sed -i "s/export KEY_CN=openvpn.example.com/export KEY_CN=$commonName/" /etc/ope
 cd /etc/openvpn/easy-rsa
 source ./vars
 ./clean-all
-./build-ca
-./build-key-server server
+./build-ca --batch 
+./build-key-server --batch server
 ./build-dh
 cd /etc/openvpn/easy-rsa/keys
 cp dh2048.pem ca.crt server.crt server.key /etc/openvpn
 
 #Generate client keys and certificates
 cd /etc/openvpn/easy-rsa
-./build-key $clientDevice
+./build-key --batch $clientDevice
 
 # Setup routing
 yum install iptables-services -y  > /dev/null 2>&1
