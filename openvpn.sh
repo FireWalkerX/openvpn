@@ -80,6 +80,7 @@ echo "" >> /etc/openvpn/server.conf
 echo "# Custom hardening by Rounded Security" >> /etc/openvpn/server.conf 
 echo "tls-cipher TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-256-CBC-SHA256" >> /etc/openvpn/server.conf 
 echo "tls-version-min 1.2" >> /etc/openvpn/server.conf 
+echo "tls-auth ta.key 0" >> /etc/openvpn/server.conf 
 
 # Copy Key Files
 mkdir -p /etc/openvpn/easy-rsa/keys
@@ -109,6 +110,7 @@ source ./vars
 ./build-dh
 cd /etc/openvpn/easy-rsa/keys
 cp dh2048.pem ca.crt server.crt server.key /etc/openvpn
+openvpn --genkey --secret ta.key
 
 #Generate client keys and certificates
 cd /etc/openvpn/easy-rsa
@@ -159,6 +161,10 @@ echo "</cert>" >> /home/$superUser/$clientDevice.ovpn
 echo "<key>" >> /home/$superUser/$clientDevice.ovpn
 cat /etc/openvpn/easy-rsa/keys/$clientDevice.key >> /home/$superUser/$clientDevice.ovpn
 echo "</key>" >> /home/$superUser/$clientDevice.ovpn
+echo "key-direction 1" >> /home/$superUser/$clientDevice.ovpn
+echo "<tls-auth>" >> /home/$superUser/$clientDevice.ovpn
+cat /etc/openvpn/easy-rsa/keys/ta.key >> /home/$superUser/$clientDevice.ovpn
+echo "</tls-auth>" >> /home/$superUser/$clientDevice.ovpn
 
 # Fix Permissions
 chown -R $superUser:$superUser /home/$superUser
