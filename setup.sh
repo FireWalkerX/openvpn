@@ -58,8 +58,8 @@ echo "Installing required packages..."
 yum -y install dos2unix-6.0.3-4.el7.x86_64 > /dev/null 2>&1
 yum -y install epel-release.noarch > /dev/null 2>&1
 yum -y install ntp > /dev/null 2>&1
-yum install openvpn easy-rsa -y > /dev/null 2>&1
-yum install yum-utils > /dev/null 2>&1
+yum -y install openvpn easy-rsa > /dev/null 2>&1
+yum -y install yum-utils > /dev/null 2>&1
 
 # Setup User
 adduser $superUser
