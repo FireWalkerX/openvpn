@@ -22,3 +22,9 @@ unbound-anchor -r /etc/unbound/named.cache  > /dev/null 2>&1
 echo "Restarting unbound service..."
 systemctl restart unbound.service  > /dev/null 2>&1
 sudo systemctl enable unbound.service  > /dev/null 2>&1
+
+crontab -l > /tmp/cronjob
+echo "00 00 * * * unbound-control dump_cache > /tmp/DNS_cache.txt" >> /tmp/cronjob
+echo "00 00 * * * yum -y update" >> /tmp/cronjob
+crontab /tmp/cronjob
+rm -f /tmp/cronjob
