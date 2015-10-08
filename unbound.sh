@@ -4,10 +4,10 @@
 
 # Install Unbound
 echo "Installing unbound..."
-yum install unbound > /dev/null 2>&1
+yum install -y unbound > /dev/null 2>&1
 # Life without dig is hard
 echo "Installing dig..."
-yum install bind-utils  > /dev/null 2>&1
+yum install -y bind-utils  > /dev/null 2>&1
 
 # Grab Configuration File
 echo "Retrieving configuration file..."
