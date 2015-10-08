@@ -80,7 +80,7 @@ echo "" >> /etc/openvpn/server.conf
 echo "# Custom hardening by Rounded Security" >> /etc/openvpn/server.conf 
 echo "tls-cipher TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-256-CBC-SHA256" >> /etc/openvpn/server.conf 
 echo "tls-version-min 1.2" >> /etc/openvpn/server.conf 
-echo "tls-auth ta.key 0" >> /etc/openvpn/server.conf 
+echo "tls-auth /etc/openvpn/easy-rsa/keys/ta.key 0" >> /etc/openvpn/server.conf 
 
 # Copy Key Files
 mkdir -p /etc/openvpn/easy-rsa/keys
