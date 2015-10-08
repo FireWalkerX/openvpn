@@ -77,7 +77,7 @@ sudo systemctl enable ntpd > /dev/null 2>&1
 #
 
 # Install and configure OpenVPN
-"Installing and configuring OpenVPN"
+echo "Installing and configuring OpenVPN"
 yum install openvpn easy-rsa -y > /dev/null 2>&1
 \cp -f /usr/share/doc/openvpn-*/sample/sample-config-files/server.conf /etc/openvpn
 sed -i -e "s/;local a.b.c.d/local $ip/" /etc/openvpn/server.conf
@@ -90,14 +90,8 @@ sed -i -e "s/;group nobody/group nobody/" /etc/openvpn/server.conf
 sed -i -e "s/;user nobody/user nobody/" /etc/openvpn/server.conf
 echo "" >> /etc/openvpn/server.conf
 echo "# Custom hardening by Rounded Security" >> /etc/openvpn/server.conf 
-echo "cipher AES-256-CBC" >> /etc/openvpn/server.conf 
-echo "auth SHA-256" >> /etc/openvpn/server.conf 
 echo "tls-cipher TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-256-CBC-SHA256" >> /etc/openvpn/server.conf 
 echo "tls-version-min 1.2" >> /etc/openvpn/server.conf 
-echo "tls-auth /etc/openvpn/tls-auth.key 0" >> /etc/openvpn/server.conf 
-
-# Create tls auth key
-openvpn --genkey --secret /etc/openvpn/tls-auth.key
 
 # Copy Key Files
 mkdir -p /etc/openvpn/easy-rsa/keys
@@ -133,16 +127,16 @@ cd /etc/openvpn/easy-rsa
 ./build-key $clientDevice
 
 # Setup routing
-yum install iptables-services -y
-systemctl mask firewalld
-systemctl enable iptables
-systemctl stop firewalld
-systemctl start iptables
-iptables --flush
+yum install iptables-services -y  > /dev/null 2>&1
+systemctl mask firewalld  > /dev/null 2>&1
+systemctl enable iptables  > /dev/null 2>&1
+systemctl stop firewalld  > /dev/null 2>&1
+systemctl start iptables  > /dev/null 2>&1
+iptables --flush  > /dev/null 2>&1
 iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
 iptables-save > /etc/sysconfig/iptables
 echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
-systemctl restart network.service
+systemctl restart network.service  > /dev/null 2>&1
 
 # Manage service
 systemctl -f enable openvpn@server.service
@@ -167,9 +161,6 @@ echo "verb 3" >> /home/$superUser/$clientDevice.ovpn
 echo "tls-version-min 1.2" >> /home/$superUser/$clientDevice.ovpn
 echo "script-security 1" >> /home/$superUser/$clientDevice.ovpn
 echo "tls-auth 1" >> /home/$superUser/$clientDevice.ovpn
-echo "<tls-auth>" >> /home/$superUser/$clientDevice.ovpn
-cat /etc/openvpn/tls-auth.key >> /home/$superUser/$clientDevice.ovpn
-echo "</tls-auth>" >> /home/$superUser/$clientDevice.ovpn
 echo "key-direction 0" >> /home/$superUser/$clientDevice.ovpn
 echo "verify-x509-name 'C=$country, ST=$province, L=$city, O=$organization, OU=$organizationUnit, CN=server, name=server, emailAddress=$email'" >> /home/$superUser/$clientDevice.ovpn
 echo "<ca>" >> /home/$superUser/$clientDevice.ovpn
@@ -185,23 +176,5 @@ echo "</key>" >> /home/$superUser/$clientDevice.ovpn
 # Fix Permissions
 chown -R $superUser:$superUser /home/$superUser
 
-#
-# Configure Unbound
-#
-yum install unbound -y
-cp /etc/unbound/unbound.conf /etc/unbound/unbound.conf.original
-/etc/unbound/unbound.conf
-
-
-Interface 10.8.0.1
-do-ip4: yes
-do-udp: yes
-do-tcp: yes
-logfile: /var/log/unbound
-hide-identity: yes
-hide-version: yes
-access-control: 10.8.0.1/32 allow
-unbound-checkconf /etc/unbound/unbound.conf
-# systemctl start unbound.service
 # sudo systemctl enable unbound.service
-unbound-control dump_cache > /tmp/DNS_cache.txt
+systemctl restart openvpn@server.service
