@@ -103,18 +103,18 @@ sed -i "s/export KEY_CN=openvpn.example.com/export KEY_CN=$commonName/" /etc/ope
 
 # Start generating keys and certificates
 cd /etc/openvpn/easy-rsa
-source ./vars
-./clean-all
-./build-ca --batch 
-./build-key-server --batch server
-./build-dh
+source ./vars  > /dev/null 2>&1
+./clean-all  > /dev/null 2>&1
+./build-ca --batch  > /dev/null 2>&1
+./build-key-server --batch server  > /dev/null 2>&1
+./build-dh  > /dev/null 2>&1
 cd /etc/openvpn/easy-rsa/keys
 cp dh2048.pem ca.crt server.crt server.key /etc/openvpn
-openvpn --genkey --secret ta.key
+openvpn --genkey --secret ta.key  > /dev/null 2>&1
 
 #Generate client keys and certificates
 cd /etc/openvpn/easy-rsa
-./build-key --batch $clientDevice
+./build-key --batch $clientDevice  > /dev/null 2>&1
 
 # Setup routing
 yum install iptables-services -y  > /dev/null 2>&1
