@@ -14,9 +14,9 @@ rm -f $configurationFile
 curl -s http://winhelp2002.mvps.org/hosts.txt > /tmp/winhelp2002
 curl -s http://hosts-file.net/ad_servers.txt > /tmp/hosts-file
 curl -s https://adaway.org/hosts.txt > /tmp/adaway
-dos2unix /tmp/winhelp2002
-dos2unix /tmp/hosts-file
-dos2unix /tmp/adaway
+dos2unix /tmp/winhelp2002  > /dev/null 2>&1
+dos2unix /tmp/hosts-file  > /dev/null 2>&1
+dos2unix /tmp/adaway  > /dev/null 2>&1
 
 # Get yoyo advertisement list
 curl -s -d mimetype=plaintext -d hostformat=unixhosts http://pgl.yoyo.org/adservers/serverlist.php? | sort > /tmp/blackholeHosts
@@ -45,3 +45,7 @@ rm -f /tmp/blackholeDomains
 rm -f /tmp/winhelp2002
 rm -f /tmp/hosts-file
 rm -f /tmp/adaway
+
+systemctl restart unbound.service > /dev/null 2>&1
+
+echo "Setup complete!"
