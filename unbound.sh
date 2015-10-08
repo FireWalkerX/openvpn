@@ -23,4 +23,4 @@ wget ftp://ftp.internic.net/domain/named.cache -O /etc/unbound/named.cache
 unbound-anchor -r /etc/unbound/named.cache
 
 echo "Restarting unbound service..."
-systemctl status unbound.service
+systemctl restart unbound.service
