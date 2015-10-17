@@ -5,7 +5,7 @@
 source vars.conf
 echo "[-] Generating Client Certificate"
 echo "Specify name of client(ex. Desktop): "
-read $clientDevice
+read clientDevice
 
 #Generate client keys and certificates
 cd /etc/openvpn/easy-rsa
