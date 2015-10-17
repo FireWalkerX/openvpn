@@ -1,7 +1,5 @@
 #OpenVPN Installation and Configuration
 
-##About
-
 This script allows you to install and configure OpenVPN on Centos 7. This was created for a server on DigitalOcean but should work on any Centos server. 
 
 ##Installation
