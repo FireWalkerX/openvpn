@@ -4,4 +4,4 @@ This script allows you to install and configure OpenVPN on Centos 7. This was cr
 
 #Installation
 
--wget https://github.com/jonathanwalker/openvpn/archive/master.zip-
+```wget https://github.com/jonathanwalker/openvpn/archive/master.zip```
