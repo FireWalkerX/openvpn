@@ -3,7 +3,7 @@
 # Setup OpenVPN Server and Configure Settings
 # Automatic Provisioning for OpenVPN
 
-source ../vars.conf
+source vars.conf
 echo "[-] Installing and Configuring OpenVPN"
 echo "NOTE: This may take some time"
 
