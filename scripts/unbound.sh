@@ -10,7 +10,7 @@ yum install -y unbound > /dev/null 2>&1
 # Grab Configuration File
 echo "Retrieving and setting configuration file..."
 > /etc/unbound/unbound.conf
-cp ../resources/unbound.conf /etc/unbound/unbound.conf
+cp resources/unbound.conf /etc/unbound/unbound.conf
 unbound-control-setup  > /dev/null 2>&1
 chown unbound:root /etc/unbound/unbound_*
 chmod 440 /etc/unbound/unbound_*
