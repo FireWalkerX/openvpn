@@ -2,7 +2,7 @@
 # Created by Rounded Security
 # Setup client certificates for OpenVPN
 
-source ../vars.config
+source vars.config
 echo "[-] Generating Client Certificate"
 echo "Specify name of client(ex. Desktop): "
 read $clientDevice
