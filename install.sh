@@ -8,5 +8,7 @@ chmod +x scripts/*
 ./scripts/adblocker.sh
 ./scripts/client.sh
 
-# sudo systemctl enable unbound.service
+systemctl -f enable unbound.service
+systemctl -f enable openvpn@server.service
 systemctl restart openvpn@server.service
+systemctl restart unbound
