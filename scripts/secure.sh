@@ -21,6 +21,7 @@ cd csf
 bash install.sh > /dev/null 2>&1
 cd ..
 rm -rf csf/
+rm -f csf.tgz
 rm -f /etc/csf/csf.conf
 cp -fp resources/csf.conf /etc/csf/csf.conf
 csf -r  > /dev/null 2>&1
