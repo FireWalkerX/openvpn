@@ -6,6 +6,7 @@ echo "[-] Securing the Server"
 echo "Installing Dependancies..."
 yum install -y net-tools > /dev/null 2>&1
 yum install -y perl > /dev/null 2>&1
+yum install -y bind-utils > /dev/null 2>&1
 
 # Configure Cron Jobs
 echo "Configuring Cron Jobs..."
