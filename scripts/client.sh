@@ -9,6 +9,7 @@ read clientDevice
 
 #Generate client keys and certificates
 cd /etc/openvpn/easy-rsa
+source ./vars
 ./build-key --batch $clientDevice
 
 #Create Client Certificates
