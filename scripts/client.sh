@@ -9,15 +9,15 @@ read clientDevice
 
 #Generate client keys and certificates
 cd /etc/openvpn/easy-rsa
-source ./vars
-./build-key --batch $clientDevice
+source ./vars > /dev/null 2>&1
+./build-key --batch $clientDevice > /dev/null 2>&1
 
 #Create Client Certificates
 echo "client" > /home/$superUser/$clientDevice.ovpn
 echo "dev tun" >> /home/$superUser/$clientDevice.ovpn
 echo "proto udp" >> /home/$superUser/$clientDevice.ovpn
 echo "remote $ip $port" >> /home/$superUser/$clientDevice.ovpn
-echo "resolv-retry infinite" >> /home/$superUser/$clientDevice.ovpn
+echo "resolv-retry 20" >> /home/$superUser/$clientDevice.ovpn
 echo "nobind" >> /home/$superUser/$clientDevice.ovpn
 echo "persist-key" >> /home/$superUser/$clientDevice.ovpn
 echo "persist-tun" >> /home/$superUser/$clientDevice.ovpn
