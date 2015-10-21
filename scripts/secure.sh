@@ -27,7 +27,7 @@ useradd csf
 # Setup User
 adduser $superUser
 echo "Specify Password for $superUser"
-passwd $superUser
+echo -e "$password" | passwd --stdin $superUser
 gpasswd -a $superUser wheel
 
 echo "[+] Server hardening complete"
