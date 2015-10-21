@@ -3,8 +3,6 @@
 # Setup client certificates for OpenVPN
 
 source vars.conf
-echo "Specify name of client(ex. Desktop): "
-read clientDevice
 
 #Generate client keys and certificates
 cd /etc/openvpn/easy-rsa
