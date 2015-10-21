@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source vars.conf
+
 #Install Dependancies
 yum install -y net-tools > /dev/null 2>&1
 yum install -y perl > /dev/null 2>&1
@@ -26,7 +28,6 @@ rm -f /tmp/securecronjob
 
 # Setup User
 adduser $superUser
-echo "Specify Password for $superUser"
 echo -e "$password" | passwd --stdin $superUser > /dev/null 2>&1
 gpasswd -a $superUser wheel > /dev/null 2>&1
 
