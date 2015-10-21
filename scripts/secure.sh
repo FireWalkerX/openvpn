@@ -27,7 +27,7 @@ rm -f /tmp/securecronjob
 # Setup User
 adduser $superUser
 echo "Specify Password for $superUser"
-echo -e "$password" | passwd --stdin $superUser
-gpasswd -a $superUser wheel
+echo -e "$password" | passwd --stdin $superUser > /dev/null 2>&1
+gpasswd -a $superUser wheel > /dev/null 2>&1
 
 echo "[+] Server hardening complete"
