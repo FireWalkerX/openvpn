@@ -3,7 +3,6 @@
 # Setup client certificates for OpenVPN
 
 source vars.conf
-echo "[-] Generating Client Certificate"
 echo "Specify name of client(ex. Desktop): "
 read clientDevice
 
