@@ -2,8 +2,6 @@
 # Block advertisements
 # Written by Johnny
 
-echo "[-] Configuring Ad/Malware Blocker"
-
 # IP address to send traffic
 blackHoleDNS="127.0.0.1"
 blackHoleDNS6="::1"
@@ -13,7 +11,6 @@ configurationFile="/etc/unbound/local.d/adaway.conf"
 rm -f $configurationFile
 
 # Retrieve windows ad list and convert dos2unix
-echo "Retrieving and Formatting Lists..."
 curl -s http://winhelp2002.mvps.org/hosts.txt > /tmp/winhelp2002
 curl -s http://hosts-file.net/ad_servers.txt > /tmp/hosts-file
 curl -s https://adaway.org/hosts.txt > /tmp/adaway
@@ -51,4 +48,4 @@ rm -f /tmp/adaway
 
 systemctl restart unbound.service > /dev/null 2>&1
 
-echo "[+] Ad/Malware Blocker Setup"
+echo "[+] Ad/Malware blocker setup complete"
