@@ -17,12 +17,6 @@ yum -y install openvpn easy-rsa > /dev/null 2>&1
 yum -y install yum-utils > /dev/null 2>&1
 yum -y install openvpn easy-rsa > /dev/null 2>&1
 
-# Setup User
-adduser $superUser
-echo "Specify Password for $superUser"
-passwd $superUser
-gpasswd -a $superUser wheel
-
 # Setup NTP
 sudo systemctl start ntpd > /dev/null 2>&1
 sudo systemctl enable ntpd > /dev/null 2>&1
