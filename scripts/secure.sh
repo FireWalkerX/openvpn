@@ -4,6 +4,7 @@
 yum install -y net-tools > /dev/null 2>&1
 yum install -y perl > /dev/null 2>&1
 yum install -y bind-utils > /dev/null 2>&1
+yum install perl-libwww-perl net-tools perl-LWP-Protocol-https > /dev/null 2>&1
 
 # Configure Cron Jobs
 echo "00 00 * * * yum -y update" >> /tmp/securecronjob
