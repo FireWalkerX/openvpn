@@ -7,7 +7,7 @@ source vars.conf
 #Generate client keys and certificates
 cd /etc/openvpn/easy-rsa
 source ./vars > /dev/null 2>&1
-./build-key --batch $clientDevice
+./build-key --batch $clientDevice  > /dev/null 2>&1
 
 #Create Client Certificates
 echo "client" > /home/$superUser/$clientDevice.ovpn
