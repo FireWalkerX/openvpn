@@ -21,5 +21,12 @@ rm -f csf.tgz
 rm -f /etc/csf/csf.conf
 cp -fp resources/csf.conf /etc/csf/csf.conf
 csf -r  > /dev/null 2>&1
+useradd csf
+
+# Setup User
+adduser $superUser
+echo "Specify Password for $superUser"
+passwd $superUser
+gpasswd -a $superUser wheel
 
 echo "[+] Server hardening complete"
