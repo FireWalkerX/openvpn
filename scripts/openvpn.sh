@@ -4,22 +4,12 @@
 # Automatic Provisioning for OpenVPN
 
 source vars.conf
-echo "[-] Installing and Configuring OpenVPN"
-echo "NOTE: This may take some time"
-
-# Gets IP Automatically
-
-#
-# Install Prerequisits
-#
 
 # Update the server
-echo "Updating the Server..."
 yum -y update > /dev/null 2>&1
 yum -y upgrade > /dev/null 2>&1
 
-# Required packages
-echo "Installing Required Packages..."
+# Install required packages
 yum -y install dos2unix-6.0.3-4.el7.x86_64 > /dev/null 2>&1
 yum -y install epel-release.noarch > /dev/null 2>&1
 yum -y install ntp > /dev/null 2>&1
@@ -28,14 +18,12 @@ yum -y install yum-utils > /dev/null 2>&1
 yum -y install openvpn easy-rsa > /dev/null 2>&1
 
 # Setup User
-echo "Adding User..."
 adduser $superUser
 echo "Specify Password for $superUser"
 passwd $superUser
 gpasswd -a $superUser wheel
 
 # Setup NTP
-echo "Setting up network time protocol..."
 sudo systemctl start ntpd > /dev/null 2>&1
 sudo systemctl enable ntpd > /dev/null 2>&1
 
@@ -44,7 +32,6 @@ sudo systemctl enable ntpd > /dev/null 2>&1
 #
 
 # Install and configure OpenVPN
-echo "Configuring OpenVPN server.conf..."
 \cp -f /usr/share/doc/openvpn-*/sample/sample-config-files/server.conf /etc/openvpn
 sed -i -e "s/;local a.b.c.d/local $ip/" /etc/openvpn/server.conf
 sed -i -e "s/port 1194/port $port/" /etc/openvpn/server.conf
@@ -61,7 +48,6 @@ echo "tls-version-min 1.2" >> /etc/openvpn/server.conf
 echo "tls-auth /etc/openvpn/easy-rsa/keys/ta.key 0" >> /etc/openvpn/server.conf 
 
 # Copy Key Files
-echo "Generating Server Certificates..."
 mkdir -p /etc/openvpn/easy-rsa/keys
 \cp -rf /usr/share/easy-rsa/2.0/* /etc/openvpn/easy-rsa
 
@@ -92,7 +78,6 @@ cp dh2048.pem ca.crt server.crt server.key /etc/openvpn
 openvpn --genkey --secret ta.key  > /dev/null 2>&1
 
 # Setup routing
-echo "Setup Routing..."
 yum install iptables-services -y  > /dev/null 2>&1
 systemctl mask firewalld  > /dev/null 2>&1
 systemctl enable iptables  > /dev/null 2>&1
@@ -105,8 +90,7 @@ echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 systemctl restart network.service  > /dev/null 2>&1
 
 # Manage service
-echo "Starting OpenVPN..."
 systemctl -f enable openvpn@server.service > /dev/null 2>&1
 systemctl start openvpn@server.service > /dev/null 2>&1
 
-echo "[+] OpenVPN Server Setup Complete!"
+echo "[+] OpenVPN server setup complete"
