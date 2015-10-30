@@ -22,6 +22,7 @@ echo "comp-lzo" >> /home/$superUser/$clientDevice.ovpn
 echo "verb 3" >> /home/$superUser/$clientDevice.ovpn
 echo "tls-version-min 1.2" >> /home/$superUser/$clientDevice.ovpn
 echo "script-security 1" >> /home/$superUser/$clientDevice.ovpn
+echo "remote-cert-eku "TLS Web Server Authentication" >> /home/$superUser/$clientDevice.ovpn
 echo "verify-x509-name 'C=$country, ST=$province, L=$city, O=$organization, OU=$organizationUnit, CN=server, name=server, emailAddress=$email'" >> /home/$superUser/$clientDevice.ovpn
 echo "<ca>" >> /home/$superUser/$clientDevice.ovpn
 cat /etc/openvpn/easy-rsa/keys/ca.crt >> /home/$superUser/$clientDevice.ovpn
