@@ -14,6 +14,7 @@ echo "client" > /home/$superUser/$clientDevice.ovpn
 echo "dev tun" >> /home/$superUser/$clientDevice.ovpn
 echo "proto udp" >> /home/$superUser/$clientDevice.ovpn
 echo "remote $ip $port" >> /home/$superUser/$clientDevice.ovpn
+echo "dhcp-option DNS 10.8.0.1" >> /home/$superUser/$clientDevice.ovpn
 echo "resolv-retry 20" >> /home/$superUser/$clientDevice.ovpn
 echo "nobind" >> /home/$superUser/$clientDevice.ovpn
 echo "persist-key" >> /home/$superUser/$clientDevice.ovpn
