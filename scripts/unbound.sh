@@ -1,6 +1,6 @@
 #!/bin/bash
 # Setup unbound as recursive DNS server
-# Written by JonathanW
+# Written by Johnny
 
 # Install Unbound
 yum install -y unbound > /dev/null 2>&1
