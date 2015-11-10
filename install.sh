@@ -1,5 +1,6 @@
 #!/bin/bash
 # Configure openvpn script
+# Writen by Johnny
 
 chmod +x scripts/*
 ./scripts/secure.sh
