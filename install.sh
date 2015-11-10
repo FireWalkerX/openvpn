@@ -13,3 +13,5 @@ systemctl -f enable unbound.service
 systemctl -f enable openvpn@server.service
 systemctl restart openvpn@server.service
 systemctl restart unbound
+
+rm -f vars.conf
