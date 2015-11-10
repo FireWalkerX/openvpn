@@ -36,7 +36,7 @@ sed -i -e '200ipush "dhcp-option DNS 10.8.0.1"' /etc/openvpn/server.conf
 sed -i -e "s/;group nobody/group nobody/" /etc/openvpn/server.conf
 sed -i -e "s/;user nobody/user nobody/" /etc/openvpn/server.conf
 echo "" >> /etc/openvpn/server.conf
-echo "# Custom hardening by Rounded Security" >> /etc/openvpn/server.conf 
+echo "# Custom hardening" >> /etc/openvpn/server.conf 
 echo "cipher AES-256-CBC" >> /etc/openvpn/server.conf 
 echo "auth SHA512" >> /etc/openvpn/server.conf 
 echo "tls-cipher TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-256-CBC-SHA256" >> /etc/openvpn/server.conf 
