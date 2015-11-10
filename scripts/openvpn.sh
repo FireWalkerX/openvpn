@@ -1,5 +1,5 @@
 #!/bin/bash
-# Created by Rounded Security
+# Created by Johnny
 # Setup OpenVPN Server and Configure Settings
 # Automatic Provisioning for OpenVPN
 
