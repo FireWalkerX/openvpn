@@ -1,5 +1,5 @@
 #!/bin/bash
-# Created by Rounded Security
+# Writen by Johnny
 # Setup client certificates for OpenVPN
 
 source vars.conf
