@@ -32,4 +32,4 @@ Tip: Instead of going through this manually, just run this command
 
 6, Run the installation script
 
-```./install.sh```
+```sudo ./install.sh```
