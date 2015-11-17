@@ -30,11 +30,13 @@ sudo systemctl enable ntpd > /dev/null 2>&1
 sed -i -e "s/;local a.b.c.d/local $ip/" /etc/openvpn/server.conf
 sed -i -e "s/port 1194/port $port/" /etc/openvpn/server.conf
 sed -i -e "s/;push \"redirect-gateway def1 bypass-dhcp\"/push \"redirect-gateway def1 bypass-dhcp\"/" /etc/openvpn/server.conf
+#Implement OpenDNS
 #sed -i -e '/;push \"dhcp-option DNS 208.67.220.220\"/d' /etc/openvpn/server.conf
 #sed -i -e '/;push \"dhcp-option DNS 208.67.222.222\"/d' /etc/openvpn/server.conf
 sed -i -e '200ipush "dhcp-option DNS 10.8.0.1"' /etc/openvpn/server.conf
 sed -i -e "s/;group nobody/group nobody/" /etc/openvpn/server.conf
 sed -i -e "s/;user nobody/user nobody/" /etc/openvpn/server.conf
+sed -i 's/dh dh.*/dh dh4096.pem/g' /etc/openvpn/server.conf
 echo "" >> /etc/openvpn/server.conf
 echo "# Custom hardening" >> /etc/openvpn/server.conf 
 echo "cipher AES-256-CBC" >> /etc/openvpn/server.conf 
