@@ -49,6 +49,7 @@ mkdir -p /etc/openvpn/easy-rsa/keys
 \cp -rf /usr/share/easy-rsa/2.0/* /etc/openvpn/easy-rsa
 
 # Configure vars
+sed -i "s/KEY_SIZE=.*/KEY_SIZE=4096/g" /etc/openvpn/easy-rsa/vars
 sed -i 's/export CA_EXPIRE=3650/export CA_EXPIRE=365/' /etc/openvpn/easy-rsa/vars
 sed -i 's/export KEY_EXPIRE=3650/export KEY_EXPIRE=365/' /etc/openvpn/easy-rsa/vars
 sed -i "s/export KEY_COUNTRY=\"US\"/export KEY_COUNTRY=\"$country\"/" /etc/openvpn/easy-rsa/vars
@@ -71,7 +72,7 @@ source ./vars  > /dev/null 2>&1
 ./build-key-server --batch server  > /dev/null 2>&1
 ./build-dh  > /dev/null 2>&1
 cd /etc/openvpn/easy-rsa/keys
-cp dh2048.pem ca.crt server.crt server.key /etc/openvpn
+cp dh4096.pem ca.crt server.crt server.key /etc/openvpn
 openvpn --genkey --secret ta.key  > /dev/null 2>&1
 
 # Setup routing
