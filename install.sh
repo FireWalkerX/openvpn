@@ -2,7 +2,7 @@
 # Configure openvpn script
 # Writen by Johnny
 
-echo "Please be patient while openvpn, unbound, and configurations are made..."
+echo "Please be patient while openvpn, unbound, and configurations are setup..."
 
 # Set executable permissions and run scripts
 chmod +x scripts/*
