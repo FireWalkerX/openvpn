@@ -72,7 +72,7 @@ cd /etc/openvpn/easy-rsa
 source ./vars  > /dev/null 2>&1
 ./clean-all  > /dev/null 2>&1
 ./build-ca --batch  > /dev/null 2>&1
-./build-key-server --batch server  > /dev/null 2>&1
+./build-key-server --batch $commonName  > /dev/null 2>&1
 ./build-dh  > /dev/null 2>&1
 cd /etc/openvpn/easy-rsa/keys
 cp dh4096.pem ca.crt server.crt server.key /etc/openvpn
