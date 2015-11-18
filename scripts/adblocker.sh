@@ -47,5 +47,3 @@ rm -f /tmp/hosts-file
 rm -f /tmp/adaway
 
 systemctl restart unbound.service > /dev/null 2>&1
-
-echo "[+] Ad/Malware blocker setup complete"
