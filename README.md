@@ -5,18 +5,12 @@ This script allows you to install and configure OpenVPN on Centos 7. This script
 Security:
 
 * Minimum TLS Version 1.2
-
-*SHA512 HMAC Authentication
-
-*TLS Authentication Secret
-
-*Checks Extended Key Usage
-
-*Verifies X.509 Subject Names
-
-*4096-bit RSA
-
-*TLS ciphers TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-256-CBC-SHA256
+* SHA512 HMAC Authentication
+* TLS Authentication Secret
+* Checks Extended Key Usage
+* Verifies X.509 Subject Names
+* 4096-bit RSA
+* TLS ciphers TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-256-CBC-SHA256
 
 
 ##Installation
