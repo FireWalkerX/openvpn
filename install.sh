@@ -2,6 +2,9 @@
 # Configure openvpn script
 # Writen by Johnny
 
+echo
+
+# Set executable permissions and run scripts
 chmod +x scripts/*
 ./scripts/secure.sh
 ./scripts/openvpn.sh
@@ -9,9 +12,11 @@ chmod +x scripts/*
 ./scripts/adblocker.sh
 ./scripts/client.sh
 
+# Enable and start services
 systemctl -f enable unbound.service
 systemctl -f enable openvpn@server.service
 systemctl restart openvpn@server.service
 systemctl restart unbound
 
-rm -f vars.conf
+# Clear vars.conf file
+> vars.conf
