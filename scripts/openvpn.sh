@@ -92,5 +92,3 @@ systemctl restart network.service  > /dev/null 2>&1
 # Manage service
 systemctl -f enable openvpn@server.service > /dev/null 2>&1
 systemctl start openvpn@server.service > /dev/null 2>&1
-
-echo "[+] OpenVPN server setup complete"
