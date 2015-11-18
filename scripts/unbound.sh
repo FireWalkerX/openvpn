@@ -25,4 +25,3 @@ crontab -l > /tmp/cronjob
 echo "00 00 * * * unbound-control dump_cache > /tmp/DNS_cache.txt" >> /tmp/cronjob
 crontab /tmp/cronjob
 rm -f /tmp/cronjob
-echo "[+] Installation of Unbound complete"
