@@ -4,6 +4,7 @@
 
 source vars.conf
 
+echo "Note: You will be prompted for a password to encrypt individual configuration files. Unencrypted files will remain."
 echo -n "Number of clients: " 
 read repeat
 for i in $(seq 1 $repeat);do
@@ -49,8 +50,10 @@ for i in $(seq 1 $repeat);do
 	cat /etc/openvpn/easy-rsa/keys/ta.key >> /home/$superUser/$clientDevice.ovpn
 	echo "</tls-auth>" >> /home/$superUser/$clientDevice.ovpn
 
-	# Fix Permissions
-	chown -R $superUser:$superUser /home/$superUser
-
+	gpg -c /home/$superUser/$clientDevice.ovpn
 	echo "Client Configuration Location: /home/$superUser/$clientDevice.ovpn"
+	echo "Encrypted Client Configuration Location: /home/$superUser/$clientDevice.ovpn.gpg"
 done
+
+#Fix permissions
+chown -R $superUser:$superUser /home/$superUser
