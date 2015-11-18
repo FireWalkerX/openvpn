@@ -7,7 +7,7 @@ source vars.conf
 echo "Note: You will be prompted for a password to encrypt individual configuration files. Unencrypted files will remain."
 echo -n "Number of clients: " 
 read repeat
-for i in $(seq 1 $repeat);do
+for i in $(seq 0 $repeat);do
 	#Get the client file name
 	echo -n "Name of device/file: "
 	read clientDevice
