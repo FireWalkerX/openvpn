@@ -61,7 +61,7 @@ sed -i "s/export KEY_CITY=\"SanFrancisco\"/export KEY_CITY=\"$city\"/" /etc/open
 sed -i "s/export KEY_ORG=\"Fort-Funston\"/export KEY_ORG=\"$organization\"/" /etc/openvpn/easy-rsa/vars
 sed -i "s/export KEY_EMAIL=\"me@myhost.mydomain\"/export KEY_EMAIL=\"$email\"/" /etc/openvpn/easy-rsa/vars
 sed -i "s/export KEY_OU=\"MyOrganizationalUnit\"/export KEY_OU=\"$organizationUnit\"/" /etc/openvpn/easy-rsa/vars
-sed -i 's/export KEY_NAME="EasyRSA"/export KEY_NAME="server"/' /etc/openvpn/easy-rsa/vars
+sed -i "s/export KEY_NAME="EasyRSA"/export KEY_NAME=$commonName/" /etc/openvpn/easy-rsa/vars
 sed -i "s/export KEY_CN=openvpn.example.com/export KEY_CN=$commonName/" /etc/openvpn/easy-rsa/vars
 
 # Copy OpenSSL configuration
