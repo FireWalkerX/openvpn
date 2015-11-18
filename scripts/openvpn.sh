@@ -16,6 +16,7 @@ yum -y install ntp > /dev/null 2>&1
 yum -y install openvpn easy-rsa > /dev/null 2>&1
 yum -y install yum-utils > /dev/null 2>&1
 yum -y install openvpn easy-rsa > /dev/null 2>&1
+yum -y install gpg > /dev/null 2>&1
 
 # Setup NTP
 sudo systemctl start ntpd > /dev/null 2>&1
