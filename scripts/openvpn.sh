@@ -38,6 +38,8 @@ sed -i -e '200ipush "dhcp-option DNS 10.8.0.1"' /etc/openvpn/server.conf
 sed -i -e "s/;group nobody/group nobody/" /etc/openvpn/server.conf
 sed -i -e "s/;user nobody/user nobody/" /etc/openvpn/server.conf
 sed -i 's/dh dh.*/dh dh4096.pem/g' /etc/openvpn/server.conf
+sed -i -e "s/server.crt/$commonName.crt/g" /etc/openvpn/server.conf
+sed -i -e "s/server.key/$commonName.key/g" /etc/openvpn/server.conf
 echo "" >> /etc/openvpn/server.conf
 echo "# Custom hardening" >> /etc/openvpn/server.conf 
 echo "cipher AES-256-CBC" >> /etc/openvpn/server.conf 
@@ -69,7 +71,7 @@ sed -i "s/export KEY_CN=openvpn.example.com/export KEY_CN=\"$commonName\"/" /etc
 
 # Start generating keys and certificates
 cd /etc/openvpn/easy-rsa
-source ./vars
+source ./vars > /dev/null 2>&1
 ./clean-all  > /dev/null 2>&1
 ./build-ca --batch  > /dev/null 2>&1
 ./build-key-server --batch $commonName  > /dev/null 2>&1
