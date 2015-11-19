@@ -69,6 +69,7 @@ sed -i "s/export KEY_CN=openvpn.example.com/export KEY_CN=\"$commonName\"/" /etc
 
 # Start generating keys and certificates
 cd /etc/openvpn/easy-rsa
+source ./vars
 ./clean-all  > /dev/null 2>&1
 ./build-ca --batch  > /dev/null 2>&1
 ./build-key-server --batch $commonName  > /dev/null 2>&1
