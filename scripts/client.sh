@@ -23,7 +23,7 @@ for i in $(seq 1 $repeat);do
 	echo "proto udp" >> /home/$superUser/$clientDevice.ovpn
 	echo "remote $ip $port" >> /home/$superUser/$clientDevice.ovpn
 	echo "dhcp-option DNS 10.8.0.1" >> /home/$superUser/$clientDevice.ovpn
-	echo "resolv-retry 20" >> /home/$superUser/$clientDevice.ovpn
+	echo "resolv-retry infinite" >> /home/$superUser/$clientDevice.ovpn
 	echo "nobind" >> /home/$superUser/$clientDevice.ovpn
 	echo "persist-key" >> /home/$superUser/$clientDevice.ovpn
 	echo "persist-tun" >> /home/$superUser/$clientDevice.ovpn
@@ -35,7 +35,6 @@ for i in $(seq 1 $repeat);do
 	echo "auth SHA512" >> /home/$superUser/$clientDevice.ovpn
 	echo "remote-cert-eku \"TLS Web Server Authentication\"" >> /home/$superUser/$clientDevice.ovpn
 	echo "verify-x509-name 'C=$country, ST=$province, L=$city, O=$organization, OU=$organizationUnit, CN=$commonName, name=$commonName, emailAddress=$email'" >> /home/$superUser/$clientDevice.ovpn
-	echo "dhcp-option DNS 10.8.0.1" >> /home/$superUser/$clientDevice.ovpn
 	echo "<ca>" >> /home/$superUser/$clientDevice.ovpn
 	cat /etc/openvpn/easy-rsa/keys/ca.crt >> /home/$superUser/$clientDevice.ovpn
 	echo "</ca>" >> /home/$superUser/$clientDevice.ovpn
