@@ -69,13 +69,13 @@ sed -i "s/export KEY_CN=openvpn.example.com/export KEY_CN=\"$commonName\"/" /etc
 
 # Start generating keys and certificates
 cd /etc/openvpn/easy-rsa
-source ./vars  > /dev/null 2>&1
 ./clean-all  > /dev/null 2>&1
 ./build-ca --batch  > /dev/null 2>&1
 ./build-key-server --batch $commonName  > /dev/null 2>&1
+echo "Generating DH parameters, this will take a while."
 ./build-dh  > /dev/null 2>&1
 cd /etc/openvpn/easy-rsa/keys
-cp dh4096.pem ca.crt server.crt server.key /etc/openvpn
+cp dh4096.pem ca.crt $commonName.crt $commonName.key /etc/openvpn
 openvpn --genkey --secret ta.key  > /dev/null 2>&1
 
 # Setup routing
