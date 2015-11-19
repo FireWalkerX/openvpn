@@ -19,7 +19,7 @@ The installation was created to be incredibly simple, with very basic linux know
 
 Tip: Instead of going through this manually, just run this command
 
-```yum install -y unzip wget > /dev/null 2>&1; wget -q https://github.com/jonathanwalker/openvpn/archive/master.zip; unzip master.zip > /dev/null 2>&1; cd openvpn-master; chmod +x install.sh; nano vars.conf; clear; ./install.sh```
+```yum install -y unzip wget nano > /dev/null 2>&1; wget -q https://github.com/jonathanwalker/openvpn/archive/master.zip; unzip master.zip > /dev/null 2>&1; cd openvpn-master; chmod +x install.sh; nano vars.conf; clear; ./install.sh```
 
 1, Download the master zip file
 
