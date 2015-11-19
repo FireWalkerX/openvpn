@@ -15,8 +15,8 @@ chmod +x scripts/*
 # Enable and start services
 systemctl -f enable unbound.service
 systemctl -f enable openvpn@server.service
-systemctl restart openvpn@server.service
-systemctl restart unbound
+systemctl start openvpn@server.service
+systemctl start unbound
 
 # Clear vars.conf file
 > vars.conf
