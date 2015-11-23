@@ -2,6 +2,12 @@
 # Configure openvpn script
 # Writen by Johnny
 
+#Test if tun/tap is enabled
+if test ! -e "/dev/net/tun"; then
+        echo "TUN/TAP is not enabled. Please enable for this to work."
+		exit
+fi
+
 echo "Please be patient while openvpn, unbound, and configurations are setup..."
 
 # Set executable permissions and run scripts
