@@ -2,7 +2,12 @@
 # Writen by Johnny
 # Setup client certificates for OpenVPN
 
+#Get variables
 source vars.conf
+
+#Create temporary files
+touch fileLocations
+touch encFileLocations
 
 echo "Note: You will be prompted for a password to encrypt individual configuration files. Unencrypted files will remain."
 echo -n "Number of clients: " 
@@ -50,9 +55,19 @@ for i in $(seq 1 $repeat);do
 	echo "</tls-auth>" >> /home/$superUser/$clientDevice.ovpn
 
 	gpg -c /home/$superUser/$clientDevice.ovpn
-	echo "Client Configuration Location: /home/$superUser/$clientDevice.ovpn"
-	echo "Encrypted Client Configuration Location: /home/$superUser/$clientDevice.ovpn.gpg"
+	echo "Client Configuration Location: /home/$superUser/$clientDevice.ovpn" >> fileLocations
+	echo "Encrypted Client Configuration Location: /home/$superUser/$clientDevice.ovpn.gpg" >> encFileLocations
+	clear
+	echo "Created configuration file $clientDevice"
 done
+
+echo "Unencrypted configurations:"
+cat fileLocations
+echo
+echo "Encrypted configurations:"
+cat encFileLocations
+rm -f fileLocations
+rm -f encFileLocations
 
 #Fix permissions
 chown -R $superUser:$superUser /home/$superUser
