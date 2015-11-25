@@ -22,6 +22,6 @@ sudo systemctl enable unbound.service  > /dev/null 2>&1
 
 # Configure cron jobs to dump the cache every 24 hours
 crontab -l > /tmp/cronjob
-echo "00 00 * * * unbound-control dump_cache > /tmp/DNS_cache.txt" >> /tmp/cronjob
+echo "00 00 * * * unbound-control reload" >> /tmp/cronjob
 crontab /tmp/cronjob
 rm -f /tmp/cronjob
