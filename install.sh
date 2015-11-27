@@ -28,5 +28,6 @@ systemctl start unbound
 > vars.conf
 
 # Echo final notes
+echo
 echo "Note: SSH is now on port 222, root login is disabled, and user added to sudoers(add ssh keys)"
 echo "Note: Download encrypted ovpn files and remove unencrypted files when no longer needed"
