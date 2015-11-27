@@ -82,14 +82,17 @@ cp dh4096.pem ca.crt $commonName.crt $commonName.key /etc/openvpn
 openvpn --genkey --secret ta.key  > /dev/null 2>&1
 
 # Setup routing
-yum install iptables-services -y  > /dev/null 2>&1
-systemctl mask firewalld  > /dev/null 2>&1
-systemctl enable iptables  > /dev/null 2>&1
-systemctl stop firewalld  > /dev/null 2>&1
-systemctl start iptables  > /dev/null 2>&1
-iptables --flush  > /dev/null 2>&1
-iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
-iptables-save > /etc/sysconfig/iptables
+systemctl start firewalld
+systemctl enable firewalld
+firewall-cmd --add-service openvpn
+firewall-cmd --permanent --add-service openvpn
+firewall-cmd --add-masquerade
+firewall-cmd --permanent --add-masquerade
+firewall-cmd --permanent --zone=public --add-port=443/tcp
+firewall-cmd --permanent --zone=public --add-port=443/udp
+# Alternative ssh port
+firewall-cmd --permanent --zone=public --add-port=222/tcp
+firewall-cmd --reload
 echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 systemctl restart network.service  > /dev/null 2>&1
 
