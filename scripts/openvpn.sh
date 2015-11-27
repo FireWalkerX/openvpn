@@ -88,6 +88,7 @@ firewall-cmd --add-service openvpn
 firewall-cmd --permanent --add-service openvpn
 firewall-cmd --add-masquerade
 firewall-cmd --permanent --add-masquerade
+firewall-cmd --permanent --zone=public --add-port=53/udp
 firewall-cmd --permanent --zone=public --add-port=443/tcp
 firewall-cmd --permanent --zone=public --add-port=443/udp
 # Alternative ssh port
