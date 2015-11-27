@@ -58,9 +58,9 @@ for i in $(seq 1 $repeat);do
 	echo "Client Configuration Location: /home/$superUser/$clientDevice.ovpn" >> fileLocations
 	echo "Encrypted Client Configuration Location: /home/$superUser/$clientDevice.ovpn.gpg" >> encFileLocations
 	clear
-	echo "Created configuration file $clientDevice"
 done
 
+echo "Configuration file locations:"
 echo "Unencrypted configurations:"
 cat fileLocations
 echo
