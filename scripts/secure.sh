@@ -17,20 +17,13 @@ echo "00 00 * * * /bin/bash /opt/adblocker.sh > /dev/null 2>&1" >> /tmp/securecr
 crontab /tmp/securecronjob
 rm -f /tmp/securecronjob
 
-# Install ConfigServer Firewall
-#wget http://www.configserver.com/free/csf.tgz  > /dev/null 2>&1
-#tar -xzf csf.tgz > /dev/null 2>&1
-#cd csf
-#bash install.sh > /dev/null 2>&1
-#cd ..
-#rm -rf csf/
-#rm -f csf.tgz
-#rm -f /etc/csf/csf.conf
-#cp -fp resources/csf.conf /etc/csf/csf.conf
-#csf -r  > /dev/null 2>&1
-#useradd csf
-
 # Setup User
 adduser $superUser
 echo -e "$password" | passwd --stdin $superUser > /dev/null 2>&1
 gpasswd -a $superUser wheel > /dev/null 2>&1
+
+# Secure ssh
+sed -i -e "s/#Port 22/Port 222/" /etc/ssh/sshd_config
+sed -i -e "s/#ServerKeyBits 1024/ServerKeyBits 2048/" /etc/ssh/sshd_config
+sed -i -e "s/#PermitRootLogin yes/PermitRootLogin no/" /etc/ssh/sshd_config
+systemctl restart sshd
