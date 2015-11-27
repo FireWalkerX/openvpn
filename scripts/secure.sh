@@ -27,3 +27,11 @@ sed -i -e "s/#Port 22/Port 222/" /etc/ssh/sshd_config
 sed -i -e "s/#ServerKeyBits 1024/ServerKeyBits 2048/" /etc/ssh/sshd_config
 sed -i -e "s/#PermitRootLogin yes/PermitRootLogin no/" /etc/ssh/sshd_config
 systemctl restart sshd
+
+# SELinux test and rules
+if [[ $(getenforce) = Enforcing ]] || [[ $(getenforce) = Permissive ]]; then
+  yum install policycoreutils-python -y
+  semanage port -a -t ssh_port_t -p tcp 222
+  semanage port -m -t openvpn_port_t -p tcp 443
+  semanage port -a -t openvpn_port_t -p udp 443
+fi
