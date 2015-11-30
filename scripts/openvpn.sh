@@ -82,18 +82,6 @@ cp dh4096.pem ca.crt $commonName.crt $commonName.key /etc/openvpn
 openvpn --genkey --secret ta.key  > /dev/null 2>&1
 
 # Setup routing
-systemctl start firewalld > /dev/null 2>&1
-systemctl enable firewalld > /dev/null 2>&1
-firewall-cmd --add-service openvpn > /dev/null 2>&1
-firewall-cmd --permanent --add-service openvpn > /dev/null 2>&1
-firewall-cmd --add-masquerade > /dev/null 2>&1
-firewall-cmd --permanent --add-masquerade > /dev/null 2>&1
-firewall-cmd --permanent --zone=public --add-port=53/udp > /dev/null 2>&1
-firewall-cmd --permanent --zone=public --add-port=443/tcp > /dev/null 2>&1
-firewall-cmd --permanent --zone=public --add-port=443/udp > /dev/null 2>&1
-# Alternative ssh port
-firewall-cmd --permanent --zone=public --add-port=222/tcp > /dev/null 2>&1
-firewall-cmd --reload > /dev/null 2>&1
 echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 systemctl restart network.service  > /dev/null 2>&1
 
