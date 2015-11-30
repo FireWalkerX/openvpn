@@ -28,6 +28,20 @@ sed -i -e "s/#ServerKeyBits 1024/ServerKeyBits 2048/" /etc/ssh/sshd_config
 sed -i -e "s/#PermitRootLogin yes/PermitRootLogin no/" /etc/ssh/sshd_config
 systemctl restart sshd
 
+# Setup firewalld
+systemctl start firewalld > /dev/null 2>&1
+systemctl enable firewalld > /dev/null 2>&1
+firewall-cmd --add-service openvpn > /dev/null 2>&1
+firewall-cmd --permanent --add-service openvpn > /dev/null 2>&1
+firewall-cmd --add-masquerade > /dev/null 2>&1
+firewall-cmd --permanent --add-masquerade > /dev/null 2>&1
+firewall-cmd --permanent --zone=public --add-port=53/udp > /dev/null 2>&1
+firewall-cmd --permanent --zone=public --add-port=443/tcp > /dev/null 2>&1
+firewall-cmd --permanent --zone=public --add-port=443/udp > /dev/null 2>&1
+# Alternative ssh port
+firewall-cmd --permanent --zone=public --add-port=222/tcp > /dev/null 2>&1
+firewall-cmd --reload > /dev/null 2>&1
+
 # SELinux test and rules
 if [[ $(getenforce) = Enforcing ]] || [[ $(getenforce) = Permissive ]]; then
   yum install policycoreutils-python -y
