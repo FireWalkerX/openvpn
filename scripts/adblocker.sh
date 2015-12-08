@@ -3,7 +3,7 @@
 # Written by Johnny
 
 # IP address to send traffic
-blackHoleDNS="127.0.0.1"
+blackHoleDNS="0.0.0.0"
 blackHoleDNS6="::1"
 
 # Location of configuration file
