@@ -11,6 +11,7 @@ yum -y upgrade > /dev/null 2>&1
 
 # Install required packages
 yum -y install dos2unix-6.0.3-4.el7.x86_64 > /dev/null 2>&1
+yum -y install rng-tools > /dev/null 2>&1
 yum -y install epel-release.noarch > /dev/null 2>&1
 yum -y install ntp > /dev/null 2>&1
 yum -y install openvpn easy-rsa > /dev/null 2>&1
